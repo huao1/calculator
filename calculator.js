@@ -1,8 +1,10 @@
 
 let DISPLAY_VALUE = {
     firstValue: 0,
+    decimal1: false,
     operator: null,
-    secondValue: "", 
+    secondValue: "",
+    decimal2: false, 
     nextOperator: "",
 };
 
@@ -22,6 +24,9 @@ function activateButtons() {
 
     const deleteBtn = document.querySelector("#delete");
     deleteBtn.addEventListener("click", del);
+
+    const decimal = document.querySelector(".decimal");
+    decimal.addEventListener("click", checkDecimal);
 }
 
 function displayButton(e) {
@@ -36,6 +41,9 @@ function displayButton(e) {
     else {
         DISPLAY_VALUE.firstValue = Number(display.textContent);
     }
+
+    const operators = document.querySelectorAll(".operator");
+    operators.forEach(operator => operator.disabled = false);
 }
 
 
@@ -54,7 +62,8 @@ function clickOperator(e) {
         console.log(DISPLAY_VALUE.operator);
     }
 
-    console.log(DISPLAY_VALUE);
+    const operators = document.querySelectorAll(".operator");
+    operators.forEach(operator => operator.disabled = true);
 
 }
 
@@ -71,7 +80,7 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-    return num1 / num2;
+    return num2 == 0 ? undefined : (num1 / num2);
 }
 
 function operate() {
@@ -106,7 +115,6 @@ function operate() {
         topDisplay.textContent += " =";
     }
 
-    console.log(DISPLAY_VALUE);
     const display = document.querySelector(".bottom-display");
     display.textContent = result;
 }
@@ -126,9 +134,26 @@ function clear() {
 function del() {
 
     const topDisplay = document.querySelector(".top-display");
-    topDisplay.textContent = topDisplay.textContent.slice(0, -1); 
+    let displayArray = topDisplay.textContent.split(" ");
 
-    const displayArray = topDisplay.textContent.split(" ");
+    if (displayArray.length == 1) {
+
+    }
+    else if (displayArray[1] == "") {
+        topDisplay.textContent = `${DISPLAY_VALUE.firstValue}`;
+        console.log(displayArray);
+    }
+
+    else if (displayArray[2] == "") {
+        topDisplay.textContent = `${DISPLAY_VALUE.firstValue} `;
+        DISPLAY_VALUE.operator = "";
+        const operators = document.querySelectorAll(".operator");
+        operators.forEach(operator => operator.disabled = false);
+        return;
+    }
+
+    displayArray = topDisplay.textContent.split(" ");
+    topDisplay.textContent = topDisplay.textContent.slice(0, -1); 
 
     DISPLAY_VALUE.firstValue = Number(displayArray[0]);
     DISPLAY_VALUE.operator = displayArray[1];
@@ -136,8 +161,20 @@ function del() {
 
     console.log(displayArray);
     console.log(DISPLAY_VALUE);
+}
 
+function checkDecimal(e) {
 
+    console.log("re")
+    const topDisplay = document.querySelector(".top-display");
+    let displayArray = topDisplay.textContent.split(" ");
+
+    if(displayArray[displayArray.length - 1].indexOf(".") != -1) {
+        topDisplay.textContent += e.target.textContent;
+    }
+    else {
+        return;
+    }
 
 }
 

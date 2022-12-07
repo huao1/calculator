@@ -9,24 +9,32 @@ button {
     border-radius: 50%;
 }
 
+button:disabled {
+    
+}
+
 .calc-container {
-    width: 500px;
+    width: 450px;
     height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    background-color: steelblue;
+    background-color: #2E5077;
+    border-radius: 16px;
+    border: 4px solid #D0D1AC;
 }
 
 .display {
     margin-top: 20px;
     height: 100px;
-    width: 450px;
+    width: 400px;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: gray;
+    background-color: #DDE0BD;
+    border: 3px solid black;
 }
 
 .top-display {
@@ -56,5 +64,21 @@ button {
 .two-button {
     width: 175px;
     height: 50px;
+    font-size: 25px;
+    color: white;
+    border: 2px solid #DDE0BD;
+    background-color: #A6A88E;
     border-radius: 15px;
+}
+
+.operator, .equal {
+    background-color: #DB5461;
+    border: 2px solid #DDE0BD;
+    font-size: 40px;
+}
+
+.numbers, .decimal{
+    background-color: #899CB2;
+    border: 2px solid #DDE0BD;
+    font-size: 40px;
 }
