@@ -10,10 +10,13 @@
     </head>
     <body>
         <div class="calc-container">
-            <div class="display"></div>
+            <div class="display">
+                <div class="top-display"></div>
+                <div class="bottom-display"></div>
+            </div>
             <div class="button-container">
-                <button class="two-button">Clear</button>
-                <button class="two-button">Delete</button>
+                <button id="clear" class="two-button">Clear</button>
+                <button id="delete" class="two-button">Delete</button>
             </div>
             <div class="button-container">
                 <button class="numbers">7</button>
@@ -36,7 +39,7 @@
             <div class="button-container">
                 <button class="numbers">0</button>
                 <button class="numbers">.</button>
-                <button>=</button>
+                <button class="equal">=</button>
                 <button class="operator">+</button>
             </div>
         </div>
